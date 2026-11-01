@@ -1,4 +1,4 @@
-<?php require 'db.php';
+<?php require __DIR__ . '/../db/db.php';
 $mensaje = null;
 $ok = false;
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -24,11 +24,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" href="logo.png" type="image/png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232f5bff'/%3E%3Ctext x='16' y='22' font-family='Arial' font-size='16' font-weight='700' fill='white' text-anchor='middle'%3ETL%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-<title>Educación a Distancia ITA</title>
+<title>TiendaLab — Iniciar sesión</title>
 <style>
   :root{
     --bg:#0b1220;
@@ -48,10 +48,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     color:var(--txt);
     display:flex;align-items:center;justify-content:center;
     padding-top:72px;
-    /* Pon una imagen 'fondo.jpg' en esta carpeta y se usará de fondo. */
     background:
-      linear-gradient(rgba(10,12,16,0),rgba(10,12,16,0)),
-      url('fondo.jpg') center/cover no-repeat,
+      radial-gradient(circle at 20% 20%,rgba(47,91,255,.25),transparent 45%),
+      radial-gradient(circle at 80% 80%,rgba(31,138,76,.18),transparent 45%),
       #0b0d12;
     padding:24px;
   }
@@ -80,7 +79,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     display:flex;align-items:center;justify-content:center;
     font-size:30px;font-weight:700;color:var(--muted);
   }
-  .logo img{width:100%;height:100%;object-fit:contain;display:block}
+  .logo .mark{
+    width:96px;height:96px;border-radius:24px;
+    background:var(--accent);color:#fff;
+    display:flex;align-items:center;justify-content:center;
+    font-size:38px;font-weight:700;letter-spacing:1px;
+  }
   label{display:block;font-size:13px;color:var(--muted);margin:0 0 6px 2px}
   .field{margin-bottom:18px}
   input{
@@ -122,9 +126,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   .brand{
     display:flex;align-items:center;justify-content:center;
     height:46px;flex:none;
-    font-weight:800;font-size:14px;letter-spacing:1px;color:#fff;
+    font-weight:700;font-size:20px;letter-spacing:.5px;color:#fff;
   }
-  .brand img{height:36px;width:auto;display:block}
   .nav{display:flex;align-items:center;gap:30px;height:100%}
   .nav-item{position:relative;height:100%;display:flex;align-items:center}
   .nav-item>span{
@@ -170,51 +173,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
   <header class="topbar">
-    <!-- Pon tu imagen 'ead.png' en esta carpeta. Si no existe, se ve el texto EAD. -->
-    <div class="brand"><img src="ead.png" alt="Logo" onerror="this.replaceWith(document.createTextNode('EAD'))"></div>
+    <div class="brand">TiendaLab</div>
     <nav class="nav">
       <div class="nav-item"><span>Inicio</span></div>
-      <div class="nav-item"><span>Modelo Educativo</span></div>
       <div class="nav-item">
-        <span>Oferta Educativa <i class="caret">▾</i></span>
+        <span>Categorías <i class="caret">▾</i></span>
         <div class="dropdown">
-          <h4>Ingeniería en Gestión Empresarial</h4>
-          <p>Impulsa negocios con visión estratégica y liderazgo.</p>
-          <h4>Ingeniería Industrial</h4>
-          <p>Transforma procesos y mejora la productividad.</p>
-          <h4>Ingeniería en Sistemas Computacionales</h4>
-          <p>Diseña soluciones tecnológicas y desarrolla software.</p>
+          <h4>Audio</h4>
+          <p>Audífonos y bocinas.</p>
+          <h4>Accesorios</h4>
+          <p>Teclados, mouse, webcams y mochilas.</p>
+          <h4>Almacenamiento</h4>
+          <p>Memorias USB y unidades SSD.</p>
         </div>
       </div>
       <div class="nav-item">
-        <span>Convocatoria <i class="caret">▾</i></span>
+        <span>Ofertas <i class="caret">▾</i></span>
         <div class="dropdown">
-          <div class="cat">Modalidad Mixta</div>
-          <h4>Ingeniería en Gestión Empresarial</h4>
-          <p>80% en línea y 20% presencial, los sábados.</p>
-          <div class="cat">A Distancia (100% en línea)</div>
-          <h4>Ingeniería en Sistemas Computacionales</h4>
-          <p>Estudia completamente en línea desde cualquier lugar.</p>
+          <div class="cat">Esta semana</div>
+          <h4>Envío gratis</h4>
+          <p>En compras mayores a $999.</p>
         </div>
       </div>
-      <div class="nav-item">
-        <span>Procesos Administrativos <i class="caret">▾</i></span>
-        <div class="dropdown">
-          <h4>Proceso de Equivalencia</h4>
-          <p>Solicita la revalidación de estudios y equivalencia de materias cursadas en otras instituciones.</p>
-        </div>
-      </div>
+      <div class="nav-item"><span>Ayuda</span></div>
     </nav>
     <div class="spacer"></div>
-    <a class="btn-plat" href="#">Plataforma Virtual →</a>
+    <a class="btn-plat" href="#">Mi carrito →</a>
   </header>
 
-  <div class="aviso"> Página de prueba — NO es un sitio oficial. Entorno de laboratorio.</div>
+  <div class="aviso">TiendaLab es una marca ficticia. Página de prueba en entorno de laboratorio (localhost).</div>
 
   <form class="card" method="POST">
     <span class="dots tr"></span>
     <span class="dots bl"></span>
-    <div class="logo"><img src="logo.png" alt="Logo" onerror="this.replaceWith(document.createTextNode('SQL_I'))"></div>
+    <div class="logo"><div class="mark">TL</div></div>
 
     <?php if ($mensaje !== null): ?>
       <div class="alert <?= $ok ? 'ok' : 'err' ?>"><?= htmlspecialchars($mensaje) ?></div>
