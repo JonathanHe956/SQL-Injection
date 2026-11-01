@@ -1,0 +1,7 @@
+# 02 - Respuesta del sistema ante una comilla simple
+Fecha: 2026-10-31 23:15:02
+Objetivo: http://127.0.0.1:8000/buscar.php?q= (GET)
+Entrada q: '
+----- Respuesta (error no capturado) -----
+Fatal error
+PDOException: SQLSTATE[HY000]: General error: 1 unrecognized token: &quot;'&quot; in C:\Users\pablo\SQL-Injection\vulnerable\buscar.php:10
