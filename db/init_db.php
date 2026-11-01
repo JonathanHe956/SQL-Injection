@@ -1,8 +1,4 @@
 <?php
-// Genera (o regenera) la base SQLite de laboratorio de TiendaLab.
-// Uso: php db/init_db.php
-// Datos 100% ficticios. Solo para uso en localhost.
-
 $rutaDb = __DIR__ . '/tiendalab.db';
 if (file_exists($rutaDb)) {
   unlink($rutaDb);
@@ -27,7 +23,6 @@ $db->exec("CREATE TABLE productos (
   stock       INTEGER NOT NULL DEFAULT 0
 )");
 
-// Contraseñas en texto plano A PROPÓSITO: es una base de laboratorio.
 $usuarios = [
   ['admin',   'admin123',   'admin'],
   ['ana',     'ana2024',    'cliente'],
@@ -49,7 +44,6 @@ $productos = [
   ['Mochila Ruta',         'Mochila para laptop de hasta 15.6 pulgadas',       'Accesorios', 699.00, 35],
 ];
 
-// La inicialización usa consultas preparadas (es código de setup, no del lab).
 $insUsuario = $db->prepare('INSERT INTO usuarios (usuario, password, rol) VALUES (?, ?, ?)');
 foreach ($usuarios as $u) {
   $insUsuario->execute($u);

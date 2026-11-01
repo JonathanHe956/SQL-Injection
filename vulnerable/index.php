@@ -57,7 +57,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     backdrop-filter:blur(10px);
     box-shadow:0 20px 60px rgba(0,0,0,.45);
   }
-  /* Rejilla de puntos decorativa */
   .dots{
     position:absolute;
     width:40px;height:40px;
@@ -108,7 +107,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   .alert.ok{background:rgba(31,138,76,.18);border:1px solid var(--ok);color:#8ef0b4}
   .alert.err{background:rgba(180,50,74,.18);border:1px solid var(--err);color:#ff9fb0}
 
-  /* ===== Barra superior ===== */
   .topbar{
     position:fixed;top:0;left:0;right:0;height:72px;z-index:50;
     background:#223a86;
@@ -156,7 +154,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   .btn-plat:hover{background:var(--accent-hover)}
   @media(max-width:860px){.nav{display:none}}
 
-  /* ===== Aviso de página de prueba ===== */
   .aviso{
     position:fixed;right:14px;bottom:14px;z-index:60;
     background:rgba(180,50,74,.92);
