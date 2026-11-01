@@ -5,15 +5,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $usuario  = $_POST['usuario'];
   $password = $_POST['password'];
 
-  // ===== VERSIÓN VULNERABLE (quita los // para activar) =====
   $sql = "SELECT * FROM usuarios WHERE usuario = '$usuario' AND password = '$password'";
   $fila = $db->query($sql)->fetch();
-
-  // ===== VERSIÓN SEGURA (activa) =====
-  //$sql  = "SELECT * FROM usuarios WHERE usuario = ? AND password = ?";
-  //$stmt = $db->prepare($sql);
-  //$stmt->execute([$usuario, $password]);
-  //$fila = $stmt->fetch();
 
   $ok = (bool)$fila;
   $mensaje = $ok ? 'Acceso concedido' : 'Datos incorrectos';
@@ -136,6 +129,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     transition:color .15s;
   }
   .nav-item:hover>span{color:#9ca3af}
+  .nav-item>a{color:#e5e7eb;font-size:14px;line-height:24px;font-weight:600;text-decoration:none;transition:color .15s}
+  .nav-item>a:hover{color:#9ca3af}
   .nav-item .caret{font-size:11px;opacity:.85;transition:transform .15s}
   .nav-item:hover .caret{transform:rotate(180deg)}
   .dropdown{
@@ -195,6 +190,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           <p>En compras mayores a $999.</p>
         </div>
       </div>
+      <div class="nav-item"><a href="buscar.php">Buscar productos</a></div>
       <div class="nav-item"><span>Ayuda</span></div>
     </nav>
     <div class="spacer"></div>
