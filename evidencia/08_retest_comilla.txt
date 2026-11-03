@@ -1,0 +1,11 @@
+# 08 - Retest comilla simple contra /seguro (8001)
+Fecha: 2026-11-03 16:26:15
+Objetivo: http://127.0.0.1:8001/buscar.php?q=' (GET)
+
+----- Respuesta (se busca error de PDO y resumen) -----
+Error PDO expuesto: 
+  -> NO se expone ningun error interno
+Resumen mostrado: class="resumen">0 resultado(s) para "&#039;"
+
+Conclusion: la comilla se trata como texto literal de busqueda. No hay
+excepcion de PDO en pantalla; devuelve 0 resultados normalmente.

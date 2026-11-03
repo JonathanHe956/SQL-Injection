@@ -1,0 +1,13 @@
+# 07 - Retest login (condicion siempre verdadera) contra /seguro (8001)
+Fecha: 2026-11-03 16:26:15
+Objetivo: http://127.0.0.1:8001/index.php (POST)
+
+----- Ataque: usuario=' OR '1'='1' --  password=(vacio) -----
+Resultado: class="alert err">Datos incorrectos
+
+----- Control: login legitimo ana/ana2024 -----
+Resultado: class="alert ok">Acceso concedido
+
+Conclusion: el bypass es rechazado (Datos incorrectos). El login legitimo
+sigue funcionando. La consulta usa parametros preparados y password_verify,
+por lo que la entrada se trata como dato, no como SQL.

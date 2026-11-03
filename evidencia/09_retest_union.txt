@@ -1,0 +1,11 @@
+# 09 - Retest UNION SELECT contra /seguro (8001)
+Fecha: 2026-11-03 16:26:15
+Objetivo: http://127.0.0.1:8001/buscar.php (GET)
+Payload q: zzz%' UNION SELECT usuario,password,rol FROM usuarios -- 
+
+Resumen mostrado: class="resumen">0 resultado(s) para "zzz%&#039; UNION SELECT usuario,password,rol FROM usuarios -- "
+Datos de usuarios filtrados (admin123/ana2024/etc.):
+  -> SIN FUGA de datos
+
+Conclusion: el payload se trata como texto de busqueda dentro del LIKE
+parametrizado. 0 resultados, no se exponen credenciales.

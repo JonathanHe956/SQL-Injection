@@ -17,207 +17,53 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232f5bff'/%3E%3Ctext x='16' y='22' font-family='Arial' font-size='16' font-weight='700' fill='white' text-anchor='middle'%3ETL%3C/text%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 <title>TiendaLab — Iniciar sesión</title>
 <style>
-  :root{
-    --bg:#0b1220;
-    --card:rgba(20,30,48,.72);
-    --border:rgba(255,255,255,.10);
-    --txt:#e8edf5;
-    --muted:#9fb0c7;
-    --accent:#2f5bff;
-    --accent-hover:#2449d8;
-    --ok:#1f8a4c;
-    --err:#b4324a;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{
-    min-height:100vh;
-    font-family:"Poppins","Segoe UI",system-ui,Arial,sans-serif;
-    color:var(--txt);
-    display:flex;align-items:center;justify-content:center;
-    padding-top:72px;
-    background:
-      radial-gradient(circle at 20% 20%,rgba(47,91,255,.25),transparent 45%),
-      radial-gradient(circle at 80% 80%,rgba(31,138,76,.18),transparent 45%),
-      #0b0d12;
-    padding:24px;
-  }
-  .card{
-    position:relative;
-    width:100%;max-width:400px;
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:16px;
-    padding:40px 32px 32px;
-    backdrop-filter:blur(10px);
-    box-shadow:0 20px 60px rgba(0,0,0,.45);
-  }
-  .dots{
-    position:absolute;
-    width:40px;height:40px;
-    background-image:radial-gradient(var(--accent) 1.5px,transparent 2px);
-    background-size:10px 10px;
-    opacity:.85;
-  }
-  .dots.tr{top:10px;right:10px}
-  .dots.bl{bottom:10px;left:10px}
-  .logo{
-    width:120px;height:120px;margin:0 auto 24px;
-    display:flex;align-items:center;justify-content:center;
-    font-size:30px;font-weight:700;color:var(--muted);
-  }
-  .logo .mark{
-    width:96px;height:96px;border-radius:24px;
-    background:var(--accent);color:#fff;
-    display:flex;align-items:center;justify-content:center;
-    font-size:38px;font-weight:700;letter-spacing:1px;
-  }
-  label{display:block;font-size:13px;color:var(--muted);margin:0 0 6px 2px}
-  .field{margin-bottom:18px}
-  input{
-    width:100%;padding:14px 16px;
-    background:rgba(255,255,255,.04);
-    border:1px solid var(--border);
-    border-radius:10px;
-    color:var(--txt);font-size:15px;
-    transition:border-color .15s,background .15s;
-  }
-  input::placeholder{color:#6f829c}
-  input:focus{outline:none;border-color:var(--accent);background:rgba(47,91,255,.08)}
-  button{
-    width:100%;padding:14px;margin-top:4px;
-    background:var(--accent);
-    color:#fff;font-size:15px;font-weight:600;
-    border:none;border-radius:10px;cursor:pointer;
-    transition:background .15s;
-  }
-  button:hover{background:var(--accent-hover)}
-  .link{display:block;text-align:center;margin-top:18px;font-size:13px}
-  .link a{color:var(--muted);text-decoration:none}
-  .link a:hover{color:var(--txt);text-decoration:underline}
-  .alert{
-    padding:12px 14px;border-radius:10px;margin-bottom:20px;
-    font-size:14px;text-align:center;
-  }
-  .alert.ok{background:rgba(31,138,76,.18);border:1px solid var(--ok);color:#8ef0b4}
-  .alert.err{background:rgba(180,50,74,.18);border:1px solid var(--err);color:#ff9fb0}
-
-  .topbar{
-    position:fixed;top:0;left:0;right:0;height:72px;z-index:50;
-    background:#223a86;
-    display:flex;align-items:center;gap:36px;
-    padding:0 28px;
-    box-shadow:0 2px 12px rgba(0,0,0,.35);
-  }
-  .brand{
-    display:flex;align-items:center;justify-content:center;
-    height:46px;flex:none;
-    font-weight:700;font-size:20px;letter-spacing:.5px;color:#fff;
-  }
-  .nav{display:flex;align-items:center;gap:30px;height:100%}
-  .nav-item{position:relative;height:100%;display:flex;align-items:center}
-  .nav-item>span{
-    color:#e5e7eb;font-size:14px;line-height:24px;font-weight:600;cursor:pointer;
-    display:inline-flex;align-items:center;gap:4px;
-    transition:color .15s;
-  }
-  .nav-item:hover>span{color:#9ca3af}
-  .nav-item>a{color:#e5e7eb;font-size:14px;line-height:24px;font-weight:600;text-decoration:none;transition:color .15s}
-  .nav-item>a:hover{color:#9ca3af}
-  .nav-item .caret{font-size:11px;opacity:.85;transition:transform .15s}
-  .nav-item:hover .caret{transform:rotate(180deg)}
-  .dropdown{
-    position:absolute;top:72px;left:-16px;
-    min-width:300px;
-    background:rgba(20,30,48,.97);
-    border:1px solid var(--border);
-    border-radius:0 0 12px 12px;
-    padding:18px 20px;
-    box-shadow:0 18px 40px rgba(0,0,0,.5);
-    opacity:0;visibility:hidden;transform:translateY(-6px);
-    transition:opacity .15s,transform .15s,visibility .15s;
-  }
-  .nav-item:hover .dropdown{opacity:1;visibility:visible;transform:translateY(0)}
-  .dropdown h4{font-size:15px;color:#fff;margin-bottom:4px}
-  .dropdown p{font-size:13px;color:var(--muted);margin-bottom:14px;line-height:1.4}
-  .dropdown .cat{font-size:11px;letter-spacing:1px;color:#7f93b5;text-transform:uppercase;margin:6px 0 8px}
-  .spacer{flex:1}
-  .btn-plat{
-    background:var(--accent);color:#fff;font-weight:600;font-size:14px;
-    padding:11px 18px;border-radius:10px;text-decoration:none;white-space:nowrap;
-  }
-  .btn-plat:hover{background:var(--accent-hover)}
-  @media(max-width:860px){.nav{display:none}}
-
-  .aviso{
-    position:fixed;right:14px;bottom:14px;z-index:60;
-    background:rgba(180,50,74,.92);
-    color:#fff;font-size:12px;line-height:1.3;
-    padding:8px 12px;border-radius:8px;max-width:260px;
-    box-shadow:0 6px 18px rgba(0,0,0,.4);
-  }
+  body{font-family:Arial,Helvetica,sans-serif;color:#1a1a1a;background:#f4f5f7;margin:0}
+  .topbar{background:#fff;border-bottom:2px solid #1a56db;padding:12px 20px}
+  .topbar .brand{font-weight:bold;font-size:18px;color:#1a56db;margin-right:20px}
+  .topbar a{color:#1a56db;font-size:14px;margin-right:14px;text-decoration:none}
+  .topbar a:hover{text-decoration:underline}
+  .wrap{max-width:440px;margin:40px auto;padding:0 16px}
+  .aviso{border:1px solid #ccc;border-radius:2px;background:#fff;padding:10px 12px;font-size:13px;color:#444;margin-bottom:20px}
+  .card{background:#fff;border:1px solid #ccc;border-radius:2px;padding:24px}
+  .logo{font-weight:bold;font-size:20px;color:#1a56db;margin-bottom:18px;text-align:center}
+  label{display:block;font-size:13px;color:#333;margin:12px 0 4px}
+  input{width:100%;padding:8px;border:1px solid #bbb;border-radius:2px;font-size:14px;box-sizing:border-box}
+  button{width:100%;margin-top:18px;padding:10px;border:1px solid #1a56db;border-radius:2px;background:#1a56db;color:#fff;font-size:15px;cursor:pointer}
+  .alert{padding:9px 12px;border:1px solid #ccc;border-radius:2px;margin-bottom:16px;font-size:14px}
+  .alert.ok{background:#e7f6ec;border-color:#2e7d32;color:#1b5e20}
+  .alert.err{background:#fbeaea;border-color:#c62828;color:#8e1b1b}
+  .hint{margin-top:16px;font-size:13px;color:#777;text-align:center}
 </style>
 </head>
 <body>
-  <header class="topbar">
-    <div class="brand">TiendaLab</div>
-    <nav class="nav">
-      <div class="nav-item"><span>Inicio</span></div>
-      <div class="nav-item">
-        <span>Categorías <i class="caret">▾</i></span>
-        <div class="dropdown">
-          <h4>Audio</h4>
-          <p>Audífonos y bocinas.</p>
-          <h4>Accesorios</h4>
-          <p>Teclados, mouse, webcams y mochilas.</p>
-          <h4>Almacenamiento</h4>
-          <p>Memorias USB y unidades SSD.</p>
-        </div>
-      </div>
-      <div class="nav-item">
-        <span>Ofertas <i class="caret">▾</i></span>
-        <div class="dropdown">
-          <div class="cat">Esta semana</div>
-          <h4>Envío gratis</h4>
-          <p>En compras mayores a $999.</p>
-        </div>
-      </div>
-      <div class="nav-item"><a href="buscar.php">Buscar productos</a></div>
-      <div class="nav-item"><span>Ayuda</span></div>
-    </nav>
-    <div class="spacer"></div>
-    <a class="btn-plat" href="#">Mi carrito →</a>
-  </header>
+  <div class="topbar">
+    <span class="brand">TiendaLab</span>
+    <a href="index.php">Inicio</a>
+    <a href="buscar.php">Buscar productos</a>
+    <a href="#">Ayuda</a>
+    <a href="#">Mi carrito</a>
+  </div>
 
-  <div class="aviso">TiendaLab es una marca ficticia. Página de prueba en entorno de laboratorio (localhost).</div>
+  <div class="wrap">
+    <form class="card" method="POST">
+      <div class="logo">TiendaLab</div>
 
-  <form class="card" method="POST">
-    <span class="dots tr"></span>
-    <span class="dots bl"></span>
-    <div class="logo"><div class="mark">TL</div></div>
+      <?php if ($mensaje !== null): ?>
+        <div class="alert <?= $ok ? 'ok' : 'err' ?>"><?= htmlspecialchars($mensaje) ?></div>
+      <?php endif; ?>
 
-    <?php if ($mensaje !== null): ?>
-      <div class="alert <?= $ok ? 'ok' : 'err' ?>"><?= htmlspecialchars($mensaje) ?></div>
-    <?php endif; ?>
+      <label for="usuario">Usuario</label>
+      <input id="usuario" name="usuario" autocomplete="off">
 
-    <div class="field">
-      <label for="usuario"></label>
-      <input id="usuario" name="usuario" placeholder="Usuario" autocomplete="off">
-    </div>
+      <label for="password">Contraseña</label>
+      <input id="password" name="password" type="password">
 
-    <div class="field">
-      <label for="password"></label>
-      <input id="password" name="password" type="password" placeholder="Contraseña">
-    </div>
+      <button type="submit">Ingresar</button>
 
-    <button type="submit">Ingresar</button>
-
-    <span class="link"><a href="#">¿Olvidaste tu contraseña?</a></span>
-  </form>
+      <p class="hint">¿Olvidaste tu contraseña?</p>
+    </form>
+  </div>
 </body>
 </html>
